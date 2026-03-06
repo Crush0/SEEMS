@@ -1,0 +1,17 @@
+export default {
+  'menu.visualization.dataAnalysis': 'Analysis',
+  'dataAnalysis.title.publicOpinion': 'Ship Data Analysis',
+  'dataAnalysis.card.title.dailyEnergyConsumption': 'Daily Energy Consumption',
+  'dataAnalysis.card.title.hourlyEnergyConsumption':
+    'Last Hourly Energy Consumption',
+  'dataAnalysis.card.title.totalComment': 'Total Comment',
+  'dataAnalysis.card.title.totalShare': 'Total Share',
+  'dataAnalysis.card.yesterday': 'Yesterday',
+  'dataAnalysis.contentPublishRatio': 'Content Publishing Ratio',
+  'dataAnalysis.popularAuthor': 'Popular Author',
+  'dataAnalysis.popularAuthor.column.ranking': 'ranking',
+  'dataAnalysis.popularAuthor.column.author': 'author',
+  'dataAnalysis.popularAuthor.column.content': 'Content Number',
+  'dataAnalysis.popularAuthor.column.click': 'Click Number',
+  'dataAnalysis.contentPeriodAnalysis': 'Content Period Analysis',
+};

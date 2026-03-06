@@ -1,0 +1,21 @@
+ship_id: 1852977124669214721
+interval: 10
+
+redis:
+  host: 127.0.0.1
+  port: 6379
+  db: 0
+  password: ""
+
+mysql:
+  host: 127.0.0.1
+  port: 3306
+  user: root
+  password: 123456
+  database: seems
+
+weather:
+  interval: 3600
+port_location:
+  latitude: 34.74353805
+  longitude: 119.41983297

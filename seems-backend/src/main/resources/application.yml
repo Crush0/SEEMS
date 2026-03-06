@@ -1,0 +1,62 @@
+spring:
+  banner:
+    charset: UTF-8
+    location: classpath:banner.txt
+  mvc:
+    static-path-pattern: /static/**
+  application:
+    name: SEEMS
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/seems?TimeZone=Asia/ShangHai&autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: 123456
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
+      database: 0
+#      password: <PASSWORD>
+server:
+  servlet:
+    context-path: /api
+
+auto-table:
+  strict-extends: true
+  enable: true
+  show-banner: false
+
+mybatis-plus:
+  global-config:
+    banner: false
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+socketio:
+  port: 33000
+  # maxFramePayloadLength: 1048576
+  # maxHttpContentLength: 1048576
+  bossCount: 1
+  workCount: 100
+  allowCustomRequests: true
+  upgradeTimeout: 1000000
+  pingTimeout: 6000000
+  pingInterval: 25000
+# 异步线程配置
+async:
+  executor:
+    thread:
+      core-pool-size: 10
+      max-pool-size: 100
+      queue-capacity: 2000
+      name:
+        prefix: async-executor-
+
+script:
+  enable: true
+  script-path: E:/WorkSpace/SEEMS/seems-script/run.py
+  python-home: E:/WorkSpace/SEEMS/seems-script/.venv/Scripts/python.exe
+  print-log: false
+  args: ""

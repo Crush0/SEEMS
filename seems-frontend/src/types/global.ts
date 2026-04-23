@@ -44,6 +44,7 @@ export enum WorkStatus {
   STOPPING_AT_PORT = 'STOPPING_AT_PORT',
   UNKNOWN = 'UNKNOWN',
   CHARGING = 'CHARGING',
+  IDLE = 'IDLE',
 }
 
 export const workStatusText = {
@@ -52,4 +53,5 @@ export const workStatusText = {
   [WorkStatus.STOPPING_AT_PORT]: '停泊在港',
   [WorkStatus.UNKNOWN]: '未知',
   [WorkStatus.CHARGING]: '充电中',
+  [WorkStatus.IDLE]: '待命',
 };

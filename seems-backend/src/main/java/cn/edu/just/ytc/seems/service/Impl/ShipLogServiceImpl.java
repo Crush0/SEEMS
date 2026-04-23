@@ -187,11 +187,11 @@ public class ShipLogServiceImpl extends BaseService implements ShipLogService {
 
     @Resource
     private BatterySOCService batterySOCService;
-    
+
     @Override
     public List<BatteryLog> getShipSocByDateTimeBetween(LocalDateTime start, LocalDateTime end) {
         UserShipRole userShipRole = getUserShipRole();
-        // 使用BatterySOCService获取经过异常值检测和修复的SOC数据
+        // 直接获取电池SOC的真实测量数据，不进行任何插值或拟合处理
         return batterySOCService.getProcessedSOCData(userShipRole.getShipId(), start, end);
     }
 }

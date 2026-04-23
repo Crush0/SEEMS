@@ -43,4 +43,13 @@ export default {
   'searchTable.actions.refresh': '刷新',
   'searchTable.actions.density': '密度',
   'searchTable.actions.columnSetting': '列设置',
+
+  // role and status
+  'personnel.role.ADMIN': '管理员',
+  'personnel.role.OPERATOR': '操作员',
+  'personnel.role.USER': '普通用户',
+  'personnel.status.NORMAL': '正常',
+  'personnel.status.PENDING': '待审核',
+  'personnel.status.DISABLED': '禁用',
+  'personnel.status.WAITJOIN': '待加入',
 };

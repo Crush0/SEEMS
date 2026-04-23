@@ -1,3 +1,4 @@
+import math
 from decimal import Decimal
 from logger import logger
 import numpy as np
@@ -6,10 +7,10 @@ from geopy.distance import great_circle
 from db.sql.model import WorkStatus
 from db.sql.model.PropellerDataModel import PropellerWorkStatus
 
-PORT_POSITION = (34.74353805, 119.41983297)  # 定义港口位置，表示一个固定的经纬度坐标
+PORT_POSITION = (34.739735, 119.444222)  # 定义港口位置，表示一个固定的经纬度坐标
 KNOT_CONVERSION_FACTOR = 1.852  # 海里转换为千米的系数（1海里 = 1.852公里）
 
-INF = 1e300 * 1e300  # 定义一个极大数值，用于在特定情况下表示无效值或极限值
+INF = math.inf  # 定义一个极大数值，用于在特定情况下表示无效值或极限值
 
 
 
@@ -21,7 +22,7 @@ def stable_sigmoid(x, k=10 / 1):
     :param k: Sigmoid函数的斜率
     :return: 返回Sigmoid计算结果
     """
-    return Decimal(1.0) / (Decimal(1.0) + np.exp(-Decimal(k) * Decimal(x) * Decimal(1.0)))
+    return max(Decimal(1), min(Decimal(0), Decimal(1.0) / (Decimal(1.0) + np.exp(-Decimal(k) * Decimal(x) * Decimal(1.0)))))
 
 
 # 判断当前坐标是否在港口范围内
@@ -70,7 +71,7 @@ def work_condition_handler(**kwargs):
     stable_sigmoid_EPD = stable_sigmoid(EPD)  # 计算EPD的Sigmoid值，用于判断工作状态的稳定性
 
     # 判断工作状态
-    if ((is_within_range(location) and speed_m_h < 182.5 and (
+    if ((is_within_range(location) and speed_m_h <= 0 and (
             left_propeller_data.status == PropellerWorkStatus.STOPPED.value or right_propeller_data.status == PropellerWorkStatus.STOPPED.value))):
         # 如果在港口范围内且航速很低，或者电池电量SOC大于阈值，则认为是停港状态
         if E_SOC > 1e-2:
@@ -79,16 +80,16 @@ def work_condition_handler(**kwargs):
             work_condition = WorkStatus.STOPPING_AT_PORT
     else:
         # 判断是否处于拖拽状态
-        if stable_sigmoid_EPD >= 0.75 and (
+        if speed_m_h > 0 and stable_sigmoid_EPD >= 0.75 and (
                 left_propeller_data.status == PropellerWorkStatus.RUNNING.value or right_propeller_data.status == PropellerWorkStatus.RUNNING.value):
             work_condition = WorkStatus.DRAGGING
         # 判断是否处于航行状态
-        elif stable_sigmoid_EPD < 0.75 and (
+        elif speed_m_h > 0 and stable_sigmoid_EPD < 0.75 and (
                 left_propeller_data.status == PropellerWorkStatus.RUNNING.value or right_propeller_data.status == PropellerWorkStatus.RUNNING.value):
             work_condition = WorkStatus.HOVERING
         else:
             # 如果无法确定工况，则为未知状态
-            work_condition = WorkStatus.UNKNOWN
+            work_condition = WorkStatus.IDLE
 
     # 输出调试信息，显示当前的计算过程
     logger.info(msg=

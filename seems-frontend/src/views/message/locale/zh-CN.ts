@@ -1,0 +1,52 @@
+export default {
+  'menu.message': '消息管理',
+  'menu.message.index': '消息中心',
+
+  'message.title': '消息中心',
+  'message.send': '发送消息',
+  'message.refresh': '刷新',
+  'message.markAsRead': '标记为已读',
+  'message.noSelection': '请选择一条消息查看详情',
+  'message.selectMessageHint': '从左侧列表选择一条消息查看详情',
+  'message.noMessages': '暂无消息',
+  'message.unknownSender': '未知发送者',
+  'message.roleMessage': '角色消息',
+
+  'message.tab.all': '全部消息',
+  'message.tab.unread': '未读消息',
+
+  'message.status.unread': '未读',
+  'message.status.read': '已读',
+
+  'message.type.message': '消息',
+  'message.type.notice': '通知',
+  'message.type.todo': '待办',
+
+  'message.role.ADMIN': '管理员',
+  'message.role.OPERATOR': '操作员',
+  'message.role.USER': '普通用户',
+
+  'message.time.justNow': '刚刚',
+  'message.time.minutesAgo': '{n}分钟前',
+  'message.time.hoursAgo': '{n}小时前',
+  'message.time.daysAgo': '{n}天前',
+
+  'message.sendModal.title': '发送消息',
+  'message.sendModal.sendType': '发送方式',
+  'message.sendModal.sendToUser': '指定用户',
+  'message.sendModal.sendToRole': '角色组',
+  'message.sendModal.receiver': '接收用户',
+  'message.sendModal.receiverPlaceholder': '请选择接收用户',
+  'message.sendModal.receiverRequired': '请选择接收用户',
+  'message.sendModal.targetRole': '目标角色',
+  'message.sendModal.roleRequired': '请选择目标角色',
+  'message.sendModal.messageTitle': '消息标题',
+  'message.sendModal.titlePlaceholder': '请输入消息标题',
+  'message.sendModal.titleRequired': '请输入消息标题',
+  'message.sendModal.content': '消息内容',
+  'message.sendModal.contentPlaceholder': '请输入消息内容',
+  'message.sendModal.contentRequired': '请输入消息内容',
+  'message.sendModal.type': '消息类型',
+  'message.sendModal.typePlaceholder': '请选择消息类型',
+  'message.sendModal.success': '消息发送成功',
+};

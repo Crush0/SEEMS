@@ -24,7 +24,7 @@
   import moment from 'moment';
   import { ref } from 'vue';
 
-  const workConditionData = ref({});
+  const workConditionData = ref({} as any);
   const { loading } = useLoading();
 
   const { chartOption } = useChartOption((isDark) => {
@@ -33,7 +33,7 @@
     return {
       legend: {
         left: 'center',
-        data: ['拖带', '航行', '停港', '充电', '未知'],
+        data: ['拖带', '航行', '停港', '充电', '未知', '待命'],
         icon: 'circle',
         itemWidth: 8,
         textStyle: {
@@ -86,7 +86,13 @@
                 color: isDark ? '#f7b4d7' : '#f77234',
               },
             },
-
+            {
+              value: [workConditionData.value.IDLE],
+              name: '待命',
+              itemStyle: {
+                color: isDark ? '#fff' : '#999',
+              },
+            },
             {
               value: [workConditionData.value.UNKNOWN],
               name: '未知',

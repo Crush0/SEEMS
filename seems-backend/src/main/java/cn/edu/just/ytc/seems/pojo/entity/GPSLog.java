@@ -65,7 +65,8 @@ public class GPSLog extends BaseEntity{
         DRAGGING("DRAGGING","拖拽/顶推 "),
         STOPPING_AT_PORT("STOPPING_AT_PORT","停港"),
         UNKNOWN("UNKNOWN","未知"),
-        CHARGING("CHARGING","充电中");
+        CHARGING("CHARGING","充电中"),
+        IDLE("IDLE", "待命");
         @EnumValue
         @JsonValue
         private final String code;

@@ -194,24 +194,24 @@
           }}
         </template>
         <template #role="{ record }">
-          <a-tag v-if="record.role === '管理员'" color="red">{{
-            record.role
+          <a-tag v-if="record.role === 'ADMIN'" color="red">{{
+            $t(`personnel.role.${record.role}`)
           }}</a-tag>
-          <a-tag v-else-if="record.role === '操作员'" color="blue">{{
-            record.role
+          <a-tag v-else-if="record.role === 'OPERATOR'" color="blue">{{
+            $t(`personnel.role.${record.role}`)
           }}</a-tag>
-          <a-tag v-else>{{ record.role }}</a-tag>
+          <a-tag v-else>{{ $t(`personnel.role.${record.role}`) }}</a-tag>
         </template>
         <template #status="{ record }">
           <div style="display: inline-block; transform: translateY(-2px)"
-            ><span v-if="record.status === '待审核'" class="circle"></span>
+            ><span v-if="record.status === 'PENDING'" class="circle"></span>
             <span
-              v-else-if="record.status === '正常'"
+              v-else-if="record.status === 'NORMAL'"
               class="circle pass"
             ></span>
             <span v-else class="circle fail"></span
           ></div>
-          {{ record.status }}
+          {{ $t(`personnel.status.${record.status}`) }}
         </template>
         <template #operations="{ record }">
           <a-button
@@ -344,29 +344,29 @@
   const filterRoleOptions = computed<SelectOptionData[]>(() => [
     {
       label: '管理员',
-      value: '管理员',
+      value: 'ADMIN',
     },
     {
       label: '操作员',
-      value: '操作员',
+      value: 'OPERATOR',
     },
     {
       label: '普通用户',
-      value: '普通用户',
+      value: 'USER',
     },
   ]);
   const statusOptions = computed<SelectOptionData[]>(() => [
     {
       label: '正常',
-      value: '正常',
+      value: 'NORMAL',
     },
     {
       label: '待审核',
-      value: '待审核',
+      value: 'PENDING',
     },
     {
       label: '禁用',
-      value: '禁用',
+      value: 'DISABLED',
     },
   ]);
   const fetchData = async (

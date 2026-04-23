@@ -261,6 +261,7 @@
     [WorkStatus.STOPPING_AT_PORT]: 'orange',
     [WorkStatus.UNKNOWN]: 'gray',
     [WorkStatus.CHARGING]: '#136a9c',
+    [WorkStatus.IDLE]: '#999',
   };
 </script>
 

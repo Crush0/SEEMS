@@ -33,7 +33,7 @@
     return {
       legend: {
         left: 'center',
-        data: ['拖带', '航行', '停港', '充电', '未知'],
+        data: ['拖带', '航行', '停港', '充电', '未知', '待命'],
         bottom: 0,
         icon: 'circle',
         itemWidth: 8,
@@ -90,6 +90,13 @@
             {
               value: [workConditionData.value.UNKNOWN],
               name: '未知',
+              itemStyle: {
+                color: isDark ? '#fff' : '#999',
+              },
+            },
+            {
+              value: [workConditionData.value.IDLE],
+              name: '待命',
               itemStyle: {
                 color: isDark ? '#fff' : '#999',
               },

@@ -54,7 +54,7 @@
       <a-grid-item :span="{ xs: 12, sm: 12, md: 12, lg: 12, xl: 6, xxl: 6 }">
         <ChainItem
           :loading="loading"
-          :title="'单位运输功电能消耗'"
+          :title="$t('dataAnalysis.card.title.unitWorkEnergyConsumption')"
           :data="renderData.unitTransportationEnergyConsumption"
           extra="d"
           chart-type="line"
@@ -64,13 +64,13 @@
               : 'linear-gradient(180deg, #f2f9fe 0%, #e6f4fe 100%)',
           }"
         >
-          <template #suffix> kwh </template></ChainItem
+          <template #suffix> kwh/(t·km) </template></ChainItem
         >
       </a-grid-item>
       <a-grid-item :span="{ xs: 12, sm: 12, md: 12, lg: 12, xl: 6, xxl: 6 }">
         <ChainItem
           :loading="loading"
-          :title="'单位距离电能消耗'"
+          :title="$t('dataAnalysis.card.title.unitDistanceEnergyConsumption')"
           extra="d"
           :data="renderData.unitDistanceEnergyConsumption"
           chart-type="line"

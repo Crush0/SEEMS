@@ -1,4 +1,5 @@
-ship_id: 1852977124669214721
+ship_id: 2029764200985022466
+mmsi: 413541070
 interval: 10
 
 redis:
@@ -16,6 +17,26 @@ mysql:
 
 weather:
   interval: 3600
+
 port_location:
-  latitude: 34.74353805
-  longitude: 119.41983297
+  latitude: 34.739735
+  longitude: 119.444222
+
+# 船舶位置API配置 (shipxy.com第三方接口)
+ship_position_api:
+  enabled: true
+  interval: 5  # API请求间隔（秒）
+
+# 后端API配置（用于报警系统）
+backend_api:
+  url: http://localhost:8080  # 后端API地址
+  timeout: 5  # 请求超时时间（秒）
+
+# 报警系统配置
+alarm:
+  # 是否使用策略配置（false时使用默认阈值）
+  use_strategy: true
+
+  # 默认阈值（策略未配置时使用）
+  soc_threshold: 15.0  # SOC报警阈值（百分比）
+  temp_threshold: 60.0  # 温度报警阈值（摄氏度）

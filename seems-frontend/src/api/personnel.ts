@@ -5,8 +5,8 @@ export interface PersonnelRecord {
   name: string;
   email: string;
   phone: string;
-  role: '管理员' | '操作员' | '普通用户';
-  status: '正常' | '待审核' | '禁用';
+  role: 'ADMIN' | 'OPERATOR' | 'USER';
+  status: 'NORMAL' | 'PENDING' | 'DISABLED' | 'WAITJOIN';
 }
 export interface PersonnelListResp {
   list: PersonnelRecord[];

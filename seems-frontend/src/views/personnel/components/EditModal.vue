@@ -22,9 +22,9 @@
           v-model="fieldValue.role"
           :disabled="userStore.username === fieldValue.name"
         >
-          <a-option>管理员</a-option>
-          <a-option>操作员</a-option>
-          <a-option>普通用户</a-option>
+          <a-option value="ADMIN">管理员</a-option>
+          <a-option value="OPERATOR">操作员</a-option>
+          <a-option value="USER">普通用户</a-option>
         </a-select>
       </a-form-item>
       <a-form-item label="状态" field="status">
@@ -32,8 +32,8 @@
           v-model="fieldValue.status"
           :disabled="userStore.username === fieldValue.name"
         >
-          <a-option>正常</a-option>
-          <a-option>禁用</a-option>
+          <a-option value="NORMAL">正常</a-option>
+          <a-option value="DISABLED">禁用</a-option>
         </a-select>
       </a-form-item>
     </a-form>
@@ -121,8 +121,8 @@
         name: '',
         email: '',
         phone: '',
-        role: '普通用户',
-        status: '正常',
+        role: 'USER',
+        status: 'NORMAL',
       };
     }
   };

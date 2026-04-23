@@ -78,25 +78,25 @@
         unitDistanceEnergyConsumption.value = {
           data: props.data.analyzeData.preDistanceEnergyConsumption,
           list: props.list.map(
-            (item) => item.analyzeData.preDistanceEnergyConsumption
+            (item) => item.analyzeData?.preDistanceEnergyConsumption ?? null
           ),
         };
         preUnitWorkEnergyConsumption.value = {
           data: props.data.analyzeData.preUnitWorkEnergyConsumption,
           list: props.list.map(
-            (item) => item.analyzeData.preUnitWorkEnergyConsumption
+            (item) => item.analyzeData?.preUnitWorkEnergyConsumption ?? null
           ),
         };
         preHourEnergyConsumption.value = {
           data: props.data.analyzeData.preHourEnergyConsumption,
           list: props.list.map(
-            (item) => item.analyzeData.preHourEnergyConsumption
+            (item) => item.analyzeData?.preHourEnergyConsumption ?? null
           ),
         };
         unitDistanceCO2Emission.value = {
           data: props.data.analyzeData.preDistanceEnergyConsumption,
           list: props.list.map(
-            (item) => item.analyzeData.preDistanceEnergyConsumption
+            (item) => item.analyzeData?.preDistanceEnergyConsumption ?? null
           ),
         };
       }

@@ -15,4 +15,5 @@ export default {
   'userInfo.role.admin': '管理员',
   'userInfo.role.user': '普通用户',
   'userInfo.role.operator': '操作员',
+  
 };

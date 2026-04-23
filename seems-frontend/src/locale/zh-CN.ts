@@ -1,10 +1,11 @@
 import localeMessageBox from '@/components/message-box/locale/zh-CN';
 import localeLogin from '@/views/login/locale/zh-CN';
+import localeMessage from '@/views/message/locale/zh-CN';
 
 import localeWorkplace from '@/views/dashboard/workplace/locale/zh-CN';
 
 import localeMonitor from '@/views/dashboard/monitor/locale/zh-CN';
-
+import localUserTable from '@/views/personnel/search-table/locale/zh-CN';
 import localeSearchTable from '@/views/list/search-table/locale/zh-CN';
 import localeCardList from '@/views/list/card/locale/zh-CN';
 
@@ -27,9 +28,13 @@ import localeUserInfo from '@/views/user/info/locale/zh-CN';
 
 import localeSettings from './zh-CN/settings';
 
+import localeAlert from '@/views/alarm/strategy/locale/zh-CN';
+
 export default {
   'common.more': '更多',
+  'common.loadingText': '加载中...',
   'menu.report': '报表管理',
+  'menu.report.tugMonthlyReport': '拖轮月度报表',
   'menu.dashboard': '船舶管理',
   'menu.dashboard.trace': '航迹追踪',
   'menu.server.dashboard': '仪表盘-服务端',
@@ -37,6 +42,8 @@ export default {
   'menu.server.monitor': '实时监控-服务端',
   'menu.personnel': '人员管理',
   'menu.personnel.searchTable': '人员查询',
+  'menu.message': '消息管理',
+  'menu.message.index': '消息中心',
   'menu.flow': '初始化流程',
   'menu.flow.join': '加入船舶',
   'menu.flow.create': '创建船舶信息',
@@ -55,6 +62,7 @@ export default {
   ...localeSettings,
   ...localeMessageBox,
   ...localeLogin,
+  ...localeMessage,
   ...localeWorkplace,
 
   ...localeMonitor,
@@ -71,4 +79,6 @@ export default {
   ...locale404,
   ...locale500,
   ...localeUserInfo,
+  ...localUserTable,
+  ...localeAlert
 };

@@ -22,6 +22,16 @@ const REPORT: AppRouteRecordRaw = {
         roles: ['*'],
       },
     },
+    {
+      path: 'tug-monthly-report',
+      name: 'TugMonthlyReport',
+      component: () => import('@/views/report/tug-monthly-report/index.vue'),
+      meta: {
+        locale: 'menu.report.tugMonthlyReport',
+        requiresAuth: true,
+        roles: ['*'],
+      },
+    },
   ],
 };
 

@@ -3,6 +3,8 @@ export default {
   'dataAnalysis.title.publicOpinion': '能耗数据',
   'dataAnalysis.card.title.dailyEnergyConsumption': '日耗电量',
   'dataAnalysis.card.title.hourlyEnergyConsumption': '上小时耗电量',
+  'dataAnalysis.card.title.unitWorkEnergyConsumption': '单位运输功电能消耗',
+  'dataAnalysis.card.title.unitDistanceEnergyConsumption': '单位航行距离电能消耗',
   'dataAnalysis.card.title.totalComment': '评论总量',
   'dataAnalysis.card.title.totalShare': '分享总量',
   'dataAnalysis.card.yesterday': '较昨日',

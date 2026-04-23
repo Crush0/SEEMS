@@ -11,6 +11,7 @@ class WorkStatus(enum.Enum):
     STOPPING_AT_PORT = "STOPPING_AT_PORT"
     UNKNOWN = "UNKNOWN"
     CHARGING = "CHARGING"
+    IDLE = "IDLE"
 
 
 class GPSLogModel(BaseEntity):
@@ -23,7 +24,7 @@ class GPSLogModel(BaseEntity):
     speed = Column(Float, nullable=True, comment="速度")
     direction = Column(Float, nullable=True, comment="方向")
     time = Column(DateTime, nullable=True, comment="时间")
-    workStatus = Column(SQLAlchemyEnum('HOVERING', 'DRAGGING', 'STOPPING_AT_PORT', 'UNKNOWN', 'CHARGING'),
+    workStatus = Column(SQLAlchemyEnum('HOVERING', 'DRAGGING', 'STOPPING_AT_PORT', 'UNKNOWN', 'CHARGING', 'IDLE'),
                         name='work_status',
                         comment="工况")
     link_id = Column(BigInteger, default="unknown", comment="链接ID")

@@ -183,4 +183,59 @@ public class EnergyConsumptionCalc {
         BigDecimal totalEnergyConsumptionMwh = totalEnergyConsumption.divide(BigDecimal.valueOf(1000), RoundingMode.HALF_UP);
         return totalEnergyConsumptionMwh.multiply(BigDecimal.valueOf(CarbonEquivalentCoefficient)); // 返回总碳排放量 (tCO2)
     }
+
+    /**
+     * 计算单位运输功电能消耗量
+     * 对于纯电动拖轮，运输功 = 拖力(t) × 航行距离(km)
+     * 单位运输功电能消耗 = 电能消耗(kWh) / (拖力(t) × 航行距离(km))
+     *
+     * @param energyConsumption      电能消耗（单位：kWh）
+     * @param towingForce            拖力（单位：t）
+     * @param sailingDistanceKm      航行距离（单位：km）
+     * @return 单位运输功电能消耗（单位：kWh/(t·km)）
+     */
+    public static BigDecimal calculateUnitWorkEnergyConsumption(
+            BigDecimal energyConsumption,
+            BigDecimal towingForce,
+            BigDecimal sailingDistanceKm) {
+        // 验证输入参数是否有效
+        if (energyConsumption == null || energyConsumption.compareTo(BigDecimal.ZERO) <= 0) {
+            return BigDecimal.ZERO;
+        }
+        if (towingForce == null || towingForce.compareTo(BigDecimal.ZERO) <= 0) {
+            return BigDecimal.ZERO;
+        }
+        if (sailingDistanceKm == null || sailingDistanceKm.compareTo(BigDecimal.ZERO) <= 0) {
+            return BigDecimal.ZERO;
+        }
+
+        // 计算运输功：拖力(t) × 航行距离(km)
+        BigDecimal transportWork = towingForce.multiply(sailingDistanceKm);
+
+        // 计算单位运输功电能消耗：电能消耗(kWh) / 运输功(t·km)
+        return energyConsumption.divide(transportWork, 10, RoundingMode.HALF_UP);
+    }
+
+    /**
+     * 计算单位航行距离电能消耗量
+     * 单位距离电能消耗 = 电能消耗(kWh) / 航行距离(km)
+     *
+     * @param energyConsumption      电能消耗（单位：kWh）
+     * @param sailingDistanceKm      航行距离（单位：km）
+     * @return 单位距离电能消耗（单位：kWh/km）
+     */
+    public static BigDecimal calculateDistanceEnergyConsumption(
+            BigDecimal energyConsumption,
+            BigDecimal sailingDistanceKm) {
+        // 验证输入参数是否有效
+        if (energyConsumption == null || energyConsumption.compareTo(BigDecimal.ZERO) <= 0) {
+            return BigDecimal.ZERO;
+        }
+        if (sailingDistanceKm == null || sailingDistanceKm.compareTo(BigDecimal.ZERO) <= 0) {
+            return BigDecimal.ZERO;
+        }
+
+        // 计算单位距离电能消耗：电能消耗(kWh) / 航行距离(km)
+        return energyConsumption.divide(sailingDistanceKm, 10, RoundingMode.HALF_UP);
+    }
 }

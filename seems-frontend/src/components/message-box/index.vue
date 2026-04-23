@@ -68,8 +68,11 @@
   async function fetchSourceData() {
     setLoading(true);
     try {
-      const { data } = await queryMessageList();
-      messageData.messageList = data;
+      const { data } = await queryMessageList({
+        current: 1,
+        pageSize: 100,
+      });
+      messageData.messageList = data.list;
     } catch (err) {
       // you can report use errorHandler or other
     } finally {
@@ -78,7 +81,7 @@
   }
   async function readMessage(data: MessageListType) {
     const ids = data.map((item) => item.id);
-    await setMessageStatus({ ids });
+    await setMessageStatus(ids);
     fetchSourceData();
   }
   const renderList = computed(() => {

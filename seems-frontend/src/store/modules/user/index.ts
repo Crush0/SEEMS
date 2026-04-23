@@ -56,14 +56,12 @@ const useUserStore = defineStore('user', {
     // Get user's information
     async info() {
       const res = await getUserInfo();
-      const PERMISSION = {
-        管理员: 'admin',
-        普通用户: 'user',
-        操作员: 'operator',
-      };
+      const userRole = (res.data as any).user.role;
+      // 后端返回的是英文 code (ADMIN/OPERATOR/USER)，转换为小写用于前端权限判断
+      const role = userRole ? userRole.toLowerCase() : '';
       this.setInfo({
         ...res.data,
-        role: PERMISSION[(res.data as any).user.role],
+        role: role,
       });
     },
 

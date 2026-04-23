@@ -55,7 +55,7 @@ async:
         prefix: async-executor-
 
 script:
-  enable: true
+  enable: false
   script-path: E:/WorkSpace/SEEMS/seems-script/run.py
   python-home: E:/WorkSpace/SEEMS/seems-script/.venv/Scripts/python.exe
   print-log: false

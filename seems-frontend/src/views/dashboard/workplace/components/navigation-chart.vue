@@ -45,13 +45,19 @@
   const { navData, socData } = storeToRefs(shipDataStore);
   const NavigationChartOptionFactory = () => {
     const seriesData = computed(() => {
+      // 性能优化：限制数据点数量，最多显示最近100个点
+      const maxDataPoints = 100;
+      const limitedNavData = navData.value.slice(-maxDataPoints);
+      const limitedSocData = socData.value?.slice(-maxDataPoints) || [];
+
       const batteryData = [];
       const speedData = [];
       const statusData = [];
       const logTimeData = [];
-      navData.value.forEach((item, idx) => {
+
+      limitedNavData.forEach((item, idx) => {
         logTimeData.push(moment(item.time).format('YYYY-MM-DD HH:mm:ss'));
-        batteryData.push(socData.value?.at(idx)?.soc?.toFixed(2) || 0);
+        batteryData.push(limitedSocData[idx]?.soc?.toFixed(2) || 0);
         speedData.push(item.speed);
         statusData.push(item.workStatus);
       });

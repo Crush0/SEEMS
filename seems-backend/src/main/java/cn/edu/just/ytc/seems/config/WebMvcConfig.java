@@ -20,6 +20,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 .excludePathPatterns("/static/**")
                 .excludePathPatterns("/pay/**")
                 .excludePathPatterns("/user/register")
+                .excludePathPatterns("/alarm-strategy/effective")
                 .excludePathPatterns("/user/login");//开放登录路径
 
     }

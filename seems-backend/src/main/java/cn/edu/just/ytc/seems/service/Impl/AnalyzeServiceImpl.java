@@ -87,6 +87,7 @@ public class AnalyzeServiceImpl implements AnalyzeService {
         AnalyzeData lastAnalyzeData = analyzeDataMapper.getLastHourData(shipId);
         CompletableFuture<Double> future = analyzeService.analyzeDailyEnergyConsumptionByShipId(shipId);
         Double totalEnergyConsumption = future.join();
+        ShipBaseInfo shipBaseInfo = shipMapper.selectById(shipId);
 //            log.info("船舶ID为{}的日用电量数据分析完毕，总电能消耗为{}kWh", shipId, totalEnergyConsumption);
 //            redisUtils.add2List("daily-energy-consumption-%s".formatted(shipId), new HashMap<>(){{
 //                put("date", System.currentTimeMillis());
@@ -111,10 +112,27 @@ public class AnalyzeServiceImpl implements AnalyzeService {
         analyzeData.setPreHourEnergyConsumption(BigDecimal.valueOf(hourlyEnergyConsumption));
         analyzeData.setDailySailingDuration((Long) sailObj.getOrDefault("totalDailySailingTime", 0L));
         analyzeData.setDailySailingDistance(BigDecimal.valueOf((Double) sailObj.getOrDefault("totalDailySailingDistance", 0.0)));
-        if (analyzeData.getDailySailingDistance().compareTo(new BigDecimal("0.0")) > 0) { // 防止除数为0（会有异常 NaN）
-            // 计算每公里用电量
-            analyzeData.setPreDistanceEnergyConsumption(analyzeData.getDailyEnergyConsumption().divide(analyzeData.getDailySailingDistance(), RoundingMode.HALF_UP));
+
+        // 计算单位航行距离电能消耗量（单位距离电能消耗）
+        if (analyzeData.getDailySailingDistance().compareTo(BigDecimal.ZERO) > 0) {
+            BigDecimal distanceEnergyConsumption = EnergyConsumptionCalc.calculateDistanceEnergyConsumption(
+                    analyzeData.getDailyEnergyConsumption(),
+                    analyzeData.getDailySailingDistance()
+            );
+            analyzeData.setPreDistanceEnergyConsumption(distanceEnergyConsumption);
         }
+
+        // 计算单位运输功电能消耗量（对于拖轮：拖力×距离）
+        if (shipBaseInfo.getTowingForce() != null && shipBaseInfo.getTowingForce().compareTo(BigDecimal.ZERO) > 0
+                && analyzeData.getDailySailingDistance().compareTo(BigDecimal.ZERO) > 0) {
+            BigDecimal unitWorkEnergyConsumption = EnergyConsumptionCalc.calculateUnitWorkEnergyConsumption(
+                    analyzeData.getDailyEnergyConsumption(),
+                    shipBaseInfo.getTowingForce(),
+                    analyzeData.getDailySailingDistance()
+            );
+            analyzeData.setPreUnitWorkEnergyConsumption(unitWorkEnergyConsumption);
+        }
+
         // 航程累计
         if (lastAnalyzeData == null) {
             analyzeData.setSailingDistance(analyzeData.getDailySailingDistance());

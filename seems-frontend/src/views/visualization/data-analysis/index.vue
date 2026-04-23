@@ -8,6 +8,9 @@
         <div class="space-unit">
           <CompusitionData />
         </div>
+        <div class="space-unit">
+          <VoyageEnergyConsumption />
+        </div>
         <div>
           <a-grid :cols="24" :col-gap="16" :row-gap="16">
             <a-grid-item
@@ -32,6 +35,7 @@
 
 <script lang="ts" setup>
   import CompusitionData from './components/compusition-data.vue';
+  import VoyageEnergyConsumption from './components/voyage-energy-consumption.vue';
   import NavigationChart from './components/navigation-chart.vue';
   import WorkingConditionPercent from './components/working-condition-percent.vue';
 </script>

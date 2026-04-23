@@ -19,12 +19,12 @@
           />
         </a-grid-item>
         <a-grid-item :span="{ xs: 24, sm: 24, md: 24, lg: 6, xl: 6, xxl: 6 }">
-          <UserActions style="margin-bottom: 16px" />
+          <EnergyEfficiencyStats style="margin-bottom: 16px" />
           <CIIRate :loading="loading" :data="renderData" />
         </a-grid-item>
       </a-grid>
       <DataChainGrowth :list="dataList" :loading="loading" :data="renderData" />
-      <ContentPublishingSource />
+      <EnergyConsumptionTrend />
     </a-space>
   </div>
 </template>
@@ -35,9 +35,9 @@
   import { ref } from 'vue';
   import DataOverview from './components/data-overview.vue';
   import DataChainGrowth from './components/data-chain-growth.vue';
-  import UserActions from './components/user-actions.vue';
+  import EnergyEfficiencyStats from './components/energy-efficiency-stats.vue';
   import CIIRate from './components/cii-rate.vue';
-  import ContentPublishingSource from './components/content-publishing-source.vue';
+  import EnergyConsumptionTrend from './components/energy-consumption-trend.vue';
 
   const { loading, setLoading } = useLoading(false);
 

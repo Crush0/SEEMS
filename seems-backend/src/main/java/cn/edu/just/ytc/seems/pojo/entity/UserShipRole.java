@@ -40,8 +40,8 @@ public class UserShipRole extends BaseEntity {
         DISABLED("DISABLED", "禁用"),
         WAITJOIN("WAITJOIN", "待加入");
         @EnumValue
-        private final String code;
         @JsonValue
+        private final String code;
         private final String name;
         Status(String code, String name) {
             this.code = code;
@@ -56,8 +56,8 @@ public class UserShipRole extends BaseEntity {
         OPERATOR("OPERATOR", "操作员"),
         USER("USER", "普通用户");
         @EnumValue // 指定存储到数据库的枚举值为 code
-        private final String code;
         @JsonValue
+        private final String code;
         private final String name;
 
         Role(String code, String name) {
